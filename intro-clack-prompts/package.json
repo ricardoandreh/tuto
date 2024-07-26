@@ -1,0 +1,20 @@
+{
+  "name": "intro-clack-prompts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "users": "node src/retrieveUsers.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@clack/prompts": "0.7.0",
+    "picocolors": "1.0.1",
+    "sqlite3": "^5.1.7"
+  },
+  "type": "module"
+}
