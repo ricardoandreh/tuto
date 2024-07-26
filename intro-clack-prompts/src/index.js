@@ -1,17 +1,18 @@
-import * as clack from '@clack/prompts';
-import initDatabase from "./initDatabase.js"
+import * as clack from "@clack/prompts";
+import initDatabase from "./initDatabase.js";
 import { setTimeout as sleep } from "node:timers/promises";
 import p from "picocolors";
 
 const oneSecond = 1000;
+const welcomeMessage = " 🙋‍♂️ Cadastre seus usuários! ";
 const RULES = {
-  'S': "Estudante",
-  'T': "Professor",
-  'P': "Diretor",
-}
+  S: "Estudante",
+  T: "Professor",
+  P: "Diretor",
+};
 
 async function main() {
-  clack.intro(p.inverse(p.cyan(p.bold(" 🙋‍♂️ Cadastre seus usuários! "))));
+  clack.intro(p.inverse(p.cyan(p.bold(welcomeMessage))));
 
   const name = await clack.text({
     message: "Nome do usuário:",
@@ -31,7 +32,7 @@ async function main() {
       { value: "P", label: "Diretor", hint: "diretoria na área hein" },
     ],
   });
-  
+
   if (clack.isCancel(rule)) {
     clack.cancel("Operação cancelada");
     return process.exit(0);
@@ -48,7 +49,7 @@ async function main() {
     clack.cancel("Operação cancelada");
     return process.exit(0);
   }
-  
+
   const s = clack.spinner();
   s.start("Perfomando a criação");
 
@@ -68,5 +69,5 @@ async function main() {
   await sleep(oneSecond);
 }
 
-const db = await initDatabase().catch(console.error)
+const db = await initDatabase().catch(console.error);
 main().catch(console.error);

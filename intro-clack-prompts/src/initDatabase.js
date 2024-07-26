@@ -29,5 +29,5 @@ export default async function initDatabase() {
     `);
   });
 
-  return db
+  return db;
 }
