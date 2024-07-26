@@ -4,7 +4,7 @@ import { setTimeout as sleep } from "node:timers/promises";
 import p from "picocolors";
 
 const oneSecond = 1000;
-const welcomeMessage = " 🙋‍♂️ Cadastre seus usuários! ";
+const welcomeMessage = " 🧒 Cadastre seus usuários! ";
 const RULES = {
   S: "Estudante",
   T: "Professor",
