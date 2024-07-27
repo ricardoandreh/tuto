@@ -39,7 +39,11 @@ async function main() {
 
   db.serialize(() => {
     db.run("BEGIN TRANSACTION");
-    db.run(`DELETE FROM Users WHERE id = ${rejectedUser.id}`);
+    db.run(`
+      DELETE
+       FROM User 
+       WHERE id = ${rejectedUser.id}
+    `);
     db.run("COMMIT");
   });
 
@@ -57,7 +61,7 @@ const db = await initDatabase().catch(console.error);
 let users;
 
 try {
-  users = await getUsers(db);
+  users = await getUsers();
 
   users && main().catch(console.error);
 } catch (err) {

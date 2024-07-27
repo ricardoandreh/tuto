@@ -6,7 +6,7 @@ const db = new sqlite3.Database(
   (err) => err && console.error(err.message)
 );
 const query =
-  "SELECT u.name, r.title FROM Users u JOIN Rules r ON u.rule = r.type ORDER BY title, name;";
+  "SELECT name, age, r.title FROM User u JOIN Role r ON u.role = r.type ORDER BY title, name;";
 
 db.all(query, (err, rows) => {
   if (err) {
@@ -21,8 +21,10 @@ db.all(query, (err, rows) => {
 
   console.info("Listagem dos usuários:");
   rows.forEach((row) => {
-    const { name, title } = row;
+    const { name, title, age } = row;
 
-    console.info(`- ${name} tem o cargo de "${title}"`);
+    console.info(
+      `- ${name} ${age ? "(" + age + " anos) " : ""}tem o cargo de "${title}"`
+    );
   });
 });

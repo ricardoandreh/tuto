@@ -5,7 +5,7 @@ import p from "picocolors";
 
 const oneSecond = 1000;
 const welcomeMessage = " 🧒 Cadastre seus usuários! ";
-const RULES = {
+const ROLES = {
   S: "Estudante",
   T: "Professor",
   P: "Diretor",
@@ -24,7 +24,7 @@ async function main() {
     return process.exit(0);
   }
 
-  const rule = await clack.select({
+  const role = await clack.select({
     message: "Selecione seu cargo:",
     options: [
       { value: "S", label: "Estudante" },
@@ -33,7 +33,7 @@ async function main() {
     ],
   });
 
-  if (clack.isCancel(rule)) {
+  if (clack.isCancel(role)) {
     clack.cancel("Operação cancelada");
     return process.exit(0);
   }
@@ -55,7 +55,7 @@ async function main() {
 
   db.serialize(() => {
     db.run("BEGIN TRANSACTION");
-    db.run(`INSERT INTO Users (name, rule) VALUES ("${name}", "${rule}")`);
+    db.run(`INSERT INTO User (name, role) VALUES ("${name}", "${role}")`);
     db.run("COMMIT");
   });
 
@@ -63,7 +63,7 @@ async function main() {
 
   s.stop("Usuário criado!");
 
-  clack.outro(`Seja bem vindo ${name} (${RULES[rule]}) 🤗`);
+  clack.outro(`Seja bem vindo ${name} (${ROLES[role]}) 🤗`);
 
   db.close();
   await sleep(oneSecond);
