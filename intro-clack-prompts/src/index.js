@@ -1,14 +1,14 @@
 import * as clack from "@clack/prompts";
-import initDatabase from "./initDatabase.js";
+import initDatabase from "./services/initDatabase.js";
 import { setTimeout as sleep } from "node:timers/promises";
 import p from "picocolors";
 
 const oneSecond = 1000;
 const welcomeMessage = " 🧒 Cadastre seus usuários! ";
 const ROLES = {
-  S: "Estudante",
-  T: "Professor",
-  P: "Diretor",
+  E: "Estudante",
+  P: "Professor",
+  D: "Diretor",
 };
 
 async function main() {
@@ -27,9 +27,9 @@ async function main() {
   const role = await clack.select({
     message: "Selecione seu cargo:",
     options: [
-      { value: "S", label: "Estudante" },
-      { value: "T", label: "Professor" },
-      { value: "P", label: "Diretor", hint: "diretoria na área hein" },
+      { value: "E", label: "Estudante" },
+      { value: "P", label: "Professor" },
+      { value: "D", label: "Diretor", hint: "diretoria na área hein" },
     ],
   });
 

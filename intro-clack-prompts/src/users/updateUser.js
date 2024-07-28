@@ -1,5 +1,5 @@
 import * as clack from "@clack/prompts";
-import initDatabase from "./initDatabase.js";
+import initDatabase from "../services/initDatabase.js";
 import getUsers from "./getUsers.js";
 import { setTimeout as sleep } from "node:timers/promises";
 import p from "picocolors";
@@ -44,7 +44,6 @@ async function main() {
   const selectedUser = await clack.select({
     message: "Qual usuário você deseja modificar?",
     options: users.map((user) => {
-      console.log(user);
       return { value: user, label: user.name };
     }),
   });
@@ -73,7 +72,7 @@ async function main() {
   let newValue;
   db.run("BEGIN TRANSACTION;");
 
-  for (let field of fieldsToUpdate) {
+  for (const field of fieldsToUpdate) {
     newValue = await clack.text({
       message: `Digite o novo valor de "${field}":`,
     });

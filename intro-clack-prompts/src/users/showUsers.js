@@ -6,7 +6,7 @@ const db = new sqlite3.Database(
   (err) => err && console.error(err.message)
 );
 const query =
-  "SELECT name, age, r.title FROM User u JOIN Role r ON u.role = r.type ORDER BY title, name;";
+  "SELECT name, age, title FROM User u JOIN Role r ON u.role = r.type ORDER BY title, name;";
 
 db.all(query, (err, rows) => {
   if (err) {

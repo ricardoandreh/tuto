@@ -14,9 +14,9 @@ export default async function initDatabase() {
 
     db.run(`
       INSERT OR IGNORE INTO Role VALUES
-      ('P', "Principal", 1),
-      ('T', "Teacher", 2),
-      ('S', "Student", 3);
+      ('D', "Diretor", 1),
+      ('T', "Professor", 2),
+      ('E', "Estudante", 3);
     `);
 
     db.run(`

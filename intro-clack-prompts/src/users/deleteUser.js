@@ -1,5 +1,5 @@
 import * as clack from "@clack/prompts";
-import initDatabase from "./initDatabase.js";
+import initDatabase from "../services/initDatabase.js";
 import getUsers from "./getUsers.js";
 import { setTimeout as sleep } from "node:timers/promises";
 import p from "picocolors";

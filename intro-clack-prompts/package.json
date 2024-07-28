@@ -5,13 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "read": "node src/showUsers.js",
-    "modify": "node src/updateUser.js",
-    "delete": "node src/deleteUser.js"
+    "read": "node src/users/showUsers.js",
+    "modify": "node src/users/updateUser.js",
+    "delete": "node src/users/deleteUser.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["clack", "prompts", "CLI"],
+  "author": "Ricardo André",
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "@clack/prompts": "0.7.0",
