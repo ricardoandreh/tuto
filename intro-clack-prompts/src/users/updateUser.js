@@ -75,6 +75,9 @@ async function main() {
   for (const field of fieldsToUpdate) {
     newValue = await clack.text({
       message: `Digite o novo valor de "${field}":`,
+      validate: (value) =>
+        (field === "name" && value.length < 3 && "Nome curto demais") ||
+        (field === "age" && value < 15 && "Usuário muito novinho"),
     });
 
     if (clack.isCancel(newValue)) {
@@ -131,5 +134,5 @@ try {
 
   users && main().catch(console.error);
 } catch (err) {
-  console.error("Nenhum usuário para remover");
+  console.error("Nenhum usuário para atualizar");
 }

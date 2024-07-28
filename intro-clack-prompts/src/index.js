@@ -17,6 +17,7 @@ async function main() {
   const name = await clack.text({
     message: "Nome do usuário:",
     placeholder: "user...",
+    validate: (value) => value.length < 3 && "Nome curto demais",
   });
 
   if (clack.isCancel(name)) {
@@ -60,8 +61,22 @@ async function main() {
   });
 
   await sleep(oneSecond * 2);
+  s.message("Finalizando");
 
+  await sleep(oneSecond * 2);
   s.stop("Usuário criado!");
+
+  clack.note(
+    p.blue("pnpm read") +
+      "    // listar usuários\n" +
+      p.blue("pnpm modify") +
+      "  // alterar dados\n" +
+      p.blue("pnpm delete") +
+      "  // remover usuário",
+    p.bgYellow(p.bold(" Dica "))
+  );
+
+  await sleep(oneSecond / 2);
 
   clack.outro(`Seja bem vindo ${name} (${ROLES[role]}) 🤗`);
 

@@ -22,6 +22,16 @@ async function main() {
     return process.exit(0);
   }
 
+  const reason = await clack.password({
+    message: "Qual motivo da remoção dele? (confidencial, confia)",
+    validate: (value) => value.length < 3 && "Sério, motivo fútil hein",
+  });
+
+  if (clack.isCancel(reason)) {
+    clack.cancel("Operação cancelada");
+    return process.exit(0);
+  }
+
   const shouldDelete = await clack.confirm({
     message: "Deseja realmente exclui-lo?",
     active: "Sim",
@@ -51,7 +61,7 @@ async function main() {
 
   s.stop("Usuário removido!");
 
-  clack.outro(`Bye bye ${rejectedUser.name} 👋`);
+  clack.outro(`Bye bye ${rejectedUser.name} 👋 Quem mandou ${reason}`);
 
   db.close();
   await sleep(oneSecond);
